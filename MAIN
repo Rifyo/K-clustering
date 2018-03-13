@@ -39,7 +39,7 @@ def makeTupleList(listx,listy):
     return tuplelist
 
 
-def euclid_Dist(listofcentroid, listofcoords):
+def euclid_Dist(centroid, listofcoords):
     #calculates mean distance
     listofdist = []
     for j in listofcoords:
@@ -64,5 +64,7 @@ x,y = create_field(10,10)
 tuplist = makeTupleList(x,y)
 centroid = [(3,3),(7,7)]
 
+a = euclid_Dist(centroid[0],tuplist)
+b = euclid_Dist(centroid[1],tuplist)
 
-#generera n antal centroids
+
