@@ -1,0 +1,68 @@
+#Initialization method-> Random partition
+import math
+import random
+import matplotlib.pyplot as plt
+
+def generate_coord(scalar):
+    random.seed(None)
+    # Function returns x and y coordinate
+    # scaled by input
+    x = random.random()
+    y = random.random()
+
+    x = x*scalar
+    y = y*scalar
+    
+    
+    return x,y
+
+def create_field(nrofdots,scalar):
+    # Function returns field of dots
+    listofx = []
+    listofy = []
+    for i in range(1,int(nrofdots)):
+        x,y = generate_coord(scalar)
+        listofx.append(x)
+        listofy.append(y)
+    return listofx, listofy
+
+def plotfield(x,y):
+    #plots field using matplotlib
+
+    plt.scatter(x,y)
+    plt.show()
+
+def makeTupleList(listx,listy):
+    tuplelist = []
+    for i in range(1,len(listx)):
+        tuplelist.append((listx[i],listy[i]))
+    return tuplelist
+
+
+def euclid_Dist(listofcentroid, listofcoords):
+    #calculates mean distance
+    listofdist = []
+    for j in listofcoords:
+        deltax = abs(centroid[0] - j[0]) #xcentroid - xcoord
+        deltay = abs(centroid[1] - j[1]) #ycentroid - ycoord
+        listofdist.append(math.sqrt(deltax**2 + deltay**2))
+    return listofdist
+
+def compare(listofcoords):
+    # takes in a list of lists (confusing I know.. )
+    pass
+
+def assignPoints(nrofclusters, listofcentroids, listofcoords):
+    listofcoords = []
+    for i in range(1, nrofclusters):
+        listofdist = meanDist(listofcentroids, listofcoords)
+        listofcoords.append(listofdist)
+
+
+
+x,y = create_field(10,10)
+tuplist = makeTupleList(x,y)
+centroid = [(3,3),(7,7)]
+
+
+#generera n antal centroids
