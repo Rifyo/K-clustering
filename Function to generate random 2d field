@@ -1,1 +1,26 @@
 
+import random
+def generate_coord(scalar):
+    random.seed(None)
+    # Function returns tuple with (x,y) coordinate
+    # scaled by input
+    x = random.random()
+    y = random.random()
+
+    x = x*scalar
+    y = y*scalar
+    
+    
+    return (x,y)
+
+def create_field(nrofdots,scalar):
+    # Function returns field of dots
+    listofcoords = []
+    for i in range(1,int(nrofdots)):
+        (x,y) = generate_coord(scalar)
+        listofcoords.append((x,y))
+    return listofcoords
+
+
+        
+lista = create_field(10,10)
