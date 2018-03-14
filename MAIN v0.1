@@ -13,18 +13,20 @@ def generate_coord(scalar):
     x = x*scalar
     y = y*scalar
     
-    
     return x,y
 
 def create_field(nrofdots,scalar):
-    # Function returns field of dots
+    # Function returns list of tuples containing random datapoints
     listofx = []
     listofy = []
     for i in range(1,int(nrofdots)):
         x,y = generate_coord(scalar)
         listofx.append(x)
         listofy.append(y)
-    return listofx, listofy
+
+    tuplelist = makeTupleList(listofx, listofy)
+    
+    return tuplelist
 
 def makeTupleList(listx,listy):
     # takes two lists and returns one list of corresponding elements combined in tuples
@@ -52,14 +54,14 @@ def plotTuple(tupl):
         plt.scatter(i[0],i[1])
     plt.show()
 
-def sort(list1,list2):
+def sort(list1,list2,datapoints):
     lista = []
     listb = []
     for i in range(len(a)):
         if a[i] <= b[i]:
-            lista.append(tuplist[i])
+            lista.append(datapoints[i])
         else:
-            listb.append(tuplist[i])
+            listb.append(datapoints[i])
     return lista,listb
 
 
@@ -88,16 +90,15 @@ def updateCentroid(listofpoints):
 
     return x,y
 
-x,y = create_field(10,10)
-tuplist = makeTupleList(x,y)
+datapoints = create_field(10,10)
 centroid = [(3,3),(7,7)]
 
-a = euclid_Dist(centroid[0],tuplist)
-b = euclid_Dist(centroid[1],tuplist)
+a = euclid_Dist(centroid[0],datapoints)
+b = euclid_Dist(centroid[1],datapoints)
 
 # compares a and b, returns the coords corresponding to the smallest distance to list belonging to the centroid..
 
-lista, listb = sort(a,b)
+lista, listb = sort(a,b,datapoints)
         
 plot(lista,listb)
 
