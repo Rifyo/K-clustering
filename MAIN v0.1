@@ -54,10 +54,10 @@ def plotTuple(tupl):
         plt.scatter(i[0],i[1])
     plt.show()
 
-def sort(list1,list2,datapoints):
+def sort(a,b,datapoints):
     lista = []
     listb = []
-    for i in range(len(a)):
+    for i in range(len(datapoints)):
         if a[i] <= b[i]:
             lista.append(datapoints[i])
         else:
@@ -65,7 +65,7 @@ def sort(list1,list2,datapoints):
     return lista,listb
 
 
-def plot(lista,listb):
+def plot(lista,listb,centroid1,centroid2):
     plt.figure(1)
     #plt.subplot(211)
     for i in lista:
@@ -75,33 +75,63 @@ def plot(lista,listb):
         plt.scatter(i[0],i[1], color = 'Blue')
 
     #plot centroids
-    plt.scatter(3,3, color = "Green")
-    plt.scatter(7,7, color = "Green")
+    plt.scatter(centroid1[0],centroid1[1], color = "Green")
+    plt.scatter(centroid2[0],centroid2[1], color = "Green")
 
         
     plt.show()
 
 def updateCentroid(listofpoints):
     #takes a list of points belonging to a centroid
-    #and spits out a new centroid
+    #and spits out a new centroid in form of a tuple
     n = len(listofpoints)
-    x = sum(listofpoints[0])/n
-    y = sum(listofpoints[1])/n
+    sumx = 0
+    sumy = 0
+    
+    for i in listofpoints:
+        sumx = sumx + i[0]
 
-    return x,y
+    for i in listofpoints:
+        sumy = sumy + i[1]
+    if n == 0:
+        n = 1
+    x = sumx/n
+    y = sumy/n
 
-datapoints = create_field(10,10)
+    return (x,y)
+
+def newIteration(centroid, lista, listb):
+
+    
+    newcentroid1 = updateCentroid(lista)
+    newcentroid2 = updateCentroid(listb)
+
+    TOL1 = abs(centroid[0][0] - newcentroid1[0]) + abs(centroid[0][1] - newcentroid1[1])
+    TOL2 = abs(centroid[1][0] - newcentroid2[0]) + abs(centroid[1][1] - newcentroid2[1])
+
+    newTOL = TOL1 + TOL2
+    
+    return newTOL, (newcentroid1, newcentroid2)
+
+#initialization
+datapoints = create_field(15,10)
 centroid = [(3,3),(7,7)]
 
+#step 1
 a = euclid_Dist(centroid[0],datapoints)
 b = euclid_Dist(centroid[1],datapoints)
-
-# compares a and b, returns the coords corresponding to the smallest distance to list belonging to the centroid..
-
 lista, listb = sort(a,b,datapoints)
-        
-plot(lista,listb)
 
-#take mean of all datapoints assigned to centroids cluster
+plot(lista,listb,centroid[0],centroid[1])
 
+tol = 1
+while tol > 0.001:
+    tol, centroid = newIteration(centroid,lista,listb)
+    a = euclid_Dist(centroid[0],datapoints)
+    b = euclid_Dist(centroid[1],datapoints)
+    lista, listb = sort(a,b,datapoints)
 
+    if tol == 0:
+        print("finished")
+
+    plot(lista,listb,centroid[0],centroid[1])
