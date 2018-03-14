@@ -52,7 +52,41 @@ def plotTuple(tupl):
         plt.scatter(i[0],i[1])
     plt.show()
 
+def sort(list1,list2):
+    lista = []
+    listb = []
+    for i in range(len(a)):
+        if a[i] <= b[i]:
+            lista.append(tuplist[i])
+        else:
+            listb.append(tuplist[i])
+    return lista,listb
 
+
+def plot(lista,listb):
+    plt.figure(1)
+    #plt.subplot(211)
+    for i in lista:
+        plt.scatter(i[0],i[1], color = 'Red')
+    #plt.subplot(212)
+    for i in listb:
+        plt.scatter(i[0],i[1], color = 'Blue')
+
+    #plot centroids
+    plt.scatter(3,3, color = "Green")
+    plt.scatter(7,7, color = "Green")
+
+        
+    plt.show()
+
+def updateCentroid(listofpoints):
+    #takes a list of points belonging to a centroid
+    #and spits out a new centroid
+    n = len(listofpoints)
+    x = sum(listofpoints[0])/n
+    y = sum(listofpoints[1])/n
+
+    return x,y
 
 x,y = create_field(10,10)
 tuplist = makeTupleList(x,y)
@@ -63,45 +97,10 @@ b = euclid_Dist(centroid[1],tuplist)
 
 # compares a and b, returns the coords corresponding to the smallest distance to list belonging to the centroid..
 
-lista = []
-listb = []
-for i in range(len(a)):
-    if a[i] <= b[i]:
-        lista.append(tuplist[i])
-    else:
-        listb.append(tuplist[i])
+lista, listb = sort(a,b)
         
-plt.figure(1)
-#plt.subplot(211)
-for i in lista:
-    plt.scatter(i[0],i[1], color = 'Red')
-#plt.subplot(212)
-for i in listb:
-    plt.scatter(i[0],i[1], color = 'Blue')
+plot(lista,listb)
 
-#plot centroids
-plt.scatter(3,3, color = "Green")
-plt.scatter(7,7, color = "Green")
+#take mean of all datapoints assigned to centroids cluster
 
-    
-plt.show()
 
-       
-#plt.figure(200)
-#plotTuple(c)
-#plt.figure(300)
-#plotTuple(d)
-
-#for i in range(len(a)):
-#    if a[i] > b[i]:
-#        print(a[i])
-#        acoordsx.append(x[i])
-#        acoordsy.append(y[i])
-#   else:
-#        bcoordsx.append(x[i])
-#        bcoordsy.append(y[i])
-#plt.scatter(3,3)
-#plt.scatter(7,7)
-#plt.scatter(acoordsx,acoordsy)
-#plt.scatter(bcoordsx,bcoordsy)
-#plt.show()
