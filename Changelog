@@ -1,2 +1,2 @@
-180314 - Rewrote code to suit for special case of k = 2 clusters
+180313 - Wrote code to suit the special case of k = 2 clusters, due to simplicity
 180315 - Rewrite 0.1 version to better fit tuple-formated coordinates
