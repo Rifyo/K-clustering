@@ -26,13 +26,8 @@ def create_field(nrofdots,scalar):
         listofy.append(y)
     return listofx, listofy
 
-def plotfield(x,y):
-    #plots field using matplotlib
-
-    plt.scatter(x,y)
-    plt.show()
-
 def makeTupleList(listx,listy):
+    # takes two lists and returns one list of corresponding elements combined in tuples
     tuplelist = []
     for i in range(1,len(listx)):
         tuplelist.append((listx[i],listy[i]))
@@ -40,7 +35,7 @@ def makeTupleList(listx,listy):
 
 
 def euclid_Dist(centroid, listofcoords):
-    #calculates mean distance
+    #calculates mean distance, returns list of distances
     listofdist = []
     for j in listofcoords:
         deltax = abs(centroid[0] - j[0]) #xcentroid - xcoord
@@ -51,12 +46,6 @@ def euclid_Dist(centroid, listofcoords):
 def compare(listofcoords):
     # takes in a list of lists (confusing I know.. )
     pass
-
-def assignPoints(nrofclusters, listofcentroids, listofcoords):
-    listofcoords = []
-    for i in range(1, nrofclusters):
-        listofdist = meanDist(listofcentroids, listofcoords)
-        listofcoords.append(listofdist)
 
 def plotTuple(tupl):
     for i in tupl:
@@ -72,16 +61,32 @@ centroid = [(3,3),(7,7)]
 a = euclid_Dist(centroid[0],tuplist)
 b = euclid_Dist(centroid[1],tuplist)
 
-c = []
-d = []
+# compares a and b, returns the coords corresponding to the smallest distance to list belonging to the centroid..
 
+lista = []
+listb = []
 for i in range(len(a)):
-    if a[i] < b[i]:
-        c.append(tuplist[i])
+    if a[i] <= b[i]:
+        lista.append(tuplist[i])
     else:
-        d.append(tuplist[i])
+        listb.append(tuplist[i])
+        
+plt.figure(1)
+#plt.subplot(211)
+for i in lista:
+    plt.scatter(i[0],i[1], color = 'Red')
+#plt.subplot(212)
+for i in listb:
+    plt.scatter(i[0],i[1], color = 'Blue')
 
- 
+#plot centroids
+plt.scatter(3,3, color = "Green")
+plt.scatter(7,7, color = "Green")
+
+    
+plt.show()
+
+       
 #plt.figure(200)
 #plotTuple(c)
 #plt.figure(300)
