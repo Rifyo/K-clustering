@@ -58,6 +58,11 @@ def assignPoints(nrofclusters, listofcentroids, listofcoords):
         listofdist = meanDist(listofcentroids, listofcoords)
         listofcoords.append(listofdist)
 
+def plotTuple(tupl):
+    for i in tupl:
+        plt.scatter(i[0],i[1])
+    plt.show()
+
 
 
 x,y = create_field(10,10)
@@ -67,4 +72,31 @@ centroid = [(3,3),(7,7)]
 a = euclid_Dist(centroid[0],tuplist)
 b = euclid_Dist(centroid[1],tuplist)
 
+c = []
+d = []
 
+for i in range(len(a)):
+    if a[i] < b[i]:
+        c.append(tuplist[i])
+    else:
+        d.append(tuplist[i])
+
+ 
+#plt.figure(200)
+#plotTuple(c)
+#plt.figure(300)
+#plotTuple(d)
+
+#for i in range(len(a)):
+#    if a[i] > b[i]:
+#        print(a[i])
+#        acoordsx.append(x[i])
+#        acoordsy.append(y[i])
+#   else:
+#        bcoordsx.append(x[i])
+#        bcoordsy.append(y[i])
+#plt.scatter(3,3)
+#plt.scatter(7,7)
+#plt.scatter(acoordsx,acoordsy)
+#plt.scatter(bcoordsx,bcoordsy)
+#plt.show()
