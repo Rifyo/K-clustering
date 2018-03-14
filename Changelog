@@ -1,1 +1,1 @@
-180314 - change function output to tuples
+180314 - Rewrote code to suit for special case of k = 2 clusters
