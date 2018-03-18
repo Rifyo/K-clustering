@@ -6,7 +6,7 @@ Version 0.1 - Implementation of special case for k = 2 clusters and n = 10 data 
 
 Version 0.2 - Generalization of code into any k of clusters and any n of datapoints.
 
-Version 0.3 - Implement K-means++ algorithm as chooser of initial centroid location
+Version 0.3 - Implement K-means++ algorithm as input method.
 
 Version 0.4 - Add feature of importing or specifying custom datapoints
 
