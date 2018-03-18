@@ -4,7 +4,7 @@ Write an implementation of k-clustering in python code for n-number of datapoint
 
 Version 0.1 - Implementation of special case for k = 2 clusters and n = 10 data points.
 
-Version 0.2 - Generalization of code into any k of clusters and any n of datapoints.
+Version 0.2 - Generalization of code into any k of clusters and any n of datapoints in m dimensions.
 
 Version 0.3 - Implement K-means++ algorithm as input method.
 
